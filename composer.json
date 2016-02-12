@@ -1,0 +1,20 @@
+{
+    "name": "dominiopublico.gov.br Scrapy",
+    "description": "PHP project for scraping of dominiopublico.gov.br website",
+    "authors": [
+        {
+            "name": "Alex",
+            "email": "alex@juchem.me"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "vlucas/phpdotenv": "^2.2",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "autoload" : {
+        "psr-0": {
+             "Scrapy\\": "src/"
+        }
+    }
+}
