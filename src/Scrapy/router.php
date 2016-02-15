@@ -4,14 +4,15 @@ namespace Scrapy;
 
 class router {
 
+    private $params = null;
+
     public static function add($controller, $params)
     {
-        $options = self::setParams($params);
         $obj = 'Scrapy\controllers\\' . $controller . 'Controller';
-        new $obj($options);
+        new $obj($params);
     }
 
-    private static function setParams($params)
+    public static function setParams($params)
     {
         $p = [];
         foreach ($params as $param) {

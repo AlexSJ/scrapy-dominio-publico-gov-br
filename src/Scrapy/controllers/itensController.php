@@ -2,6 +2,7 @@
 
 namespace Scrapy\controllers;
 
+use Scrapy\Helpers as Helper;
 use GuzzleHttp\Client as guzzle;
 
 class itensController {
@@ -31,7 +32,13 @@ class itensController {
 
         if (!is_null($trs)) {
             foreach ($trs as $tr) {
-                var_dump($tr);
+                $td = $tr->getElementsByTagName('td');
+                // Get item ID
+                // The ID is in the URL (../pesquisa/DetalheObraForm.do?select_action=&co_obra=28320)
+                $link = $td->item(2)->getElementsByTagName('a')->item(0)->getAttribute('href');
+                $id = Helper::extractUrl($link, 'co_obra');
+
+                exec("php5 -f index.php route.item item." . $id . " > log");
                 exit;
             }
         }
