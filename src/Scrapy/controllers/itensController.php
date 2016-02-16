@@ -37,8 +37,8 @@ class itensController {
                 // The ID is in the URL (../pesquisa/DetalheObraForm.do?select_action=&co_obra=28320)
                 $link = $td->item(2)->getElementsByTagName('a')->item(0)->getAttribute('href');
                 $id = Helper::extractUrl($link, 'co_obra');
-
-                exec("php5 -f index.php route.item item." . $id . " > log");
+echo $id;
+                //exec("php5 -f index.php route.item item." . $id . " > log");
                 exit;
             }
         }
