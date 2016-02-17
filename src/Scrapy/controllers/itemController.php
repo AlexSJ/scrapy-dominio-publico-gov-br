@@ -2,7 +2,9 @@
 
 namespace Scrapy\controllers;
 
+use Scrapy\Db;
 use Scrapy\Helpers as Helper;
+use Scrapy\models\Itens;
 use GuzzleHttp\Client as guzzle;
 
 class itemController {
@@ -14,9 +16,6 @@ class itemController {
 
     public function __construct($params)
     {
-        setlocale(LC_ALL,'pt_BR.UTF8');
-mb_internal_encoding('UTF8'); 
-mb_regex_encoding('UTF8');
         $this->param = $params;
         $this->getHTML();
         $this->getItem();
@@ -33,28 +32,19 @@ mb_regex_encoding('UTF8');
 
         $tds = $xpath->query('//*[@class="detalhe2"]');
 
-        if (!function_exists("htmlspecialchars_decode")) {
-    function htmlspecialchars_decode($string, $quote_style = ENT_COMPAT) {
-        return strtr($string, array_flip(get_html_translation_table(HTML_SPECIALCHARS, $quote_style)));
-    }
-}
+        $doctrine = new Db();
 
         if (!is_null($tds)) {
-            $td = $tds->item(1)->textContent;
+            $titulo = $tds->item(1)->textContent;
 
-            $titulo = mb_convert_encoding($td, "UTF-8", "HTML-ENTITIES");
-            //echo html_entity_decode($titulo, ENT_COMPAT, 'UTF-8');
-            echo iconv( 'UTF-8', 'ASCII//TRANSLIT', $titulo );
-            /*
-            foreach ($trs as $key => $tr) {
-                if () {
+            $itemObj = new Itens();
+            $itemObj->titulo = $titulo;
 
-                }
-                $td = $tr->getElementsByTagName('td');
-                $t = $td->item(0);
-                var_dump($t);
-                exit;
-            }*/
+            $doctrine->em->persist($itemObj);
+            $doctrine->em->flush();
+
+            echo $itemObj->id;
+            
         }
         exit;
     }

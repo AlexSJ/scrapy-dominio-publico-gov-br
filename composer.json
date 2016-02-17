@@ -10,7 +10,8 @@
     "require": {
         "php": ">=5.5",
         "vlucas/phpdotenv": "^2.2",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "doctrine/orm": "*"
     },
     "autoload" : {
         "psr-0": {
