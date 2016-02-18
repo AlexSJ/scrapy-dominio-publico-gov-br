@@ -22,4 +22,30 @@ class Itens {
      */
     public $titulo;
 
+    /**
+     * @Column(type="text", name="ite_slug")
+     */
+    public $slug;
+
+    /**
+     * @Column(type="string", name="ite_tamanho")
+     */
+    public $tamanho;
+
+    /**
+     * @Column(type="string", name="ite_formato")
+     */
+    public $formato;
+
+    /**
+     * @Column(type="string", name="ite_tipo_arquivo")
+     */
+    public $tipoArquivo;
+
+    /**
+     * @ManyToOne(targetEntity="Scrapy\models\Autores")
+     * @JoinColumn(name="ite_id_autor", referencedColumnName="id")
+     */
+    public $autor;
+
 }

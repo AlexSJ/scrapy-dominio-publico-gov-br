@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManager;
 class Db {
 
 	public $em = false;
-	private $dirModels = ['models/'];
+	private $dirModels = ['./models/'];
 	private $isDev 	= true;
 
 	public function __construct()
